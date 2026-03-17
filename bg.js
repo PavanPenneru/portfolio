@@ -334,3 +334,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 //     navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
 //   }
 // });
+window.addEventListener('scroll', () => {
+  settingsMenu.classList.remove('open');
+  settingsBtn.style.transform = 'rotate(0deg)';
+});
