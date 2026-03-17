@@ -1,0 +1,1094 @@
+/* GLOBAL RESET & FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: 20px;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.4s, color 0.4s;
+  overflow-x: hidden;
+}
+
+section {
+  position: relative;
+  z-index: 1;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* =======================
+   THEME VARIABLES
+======================= */
+:root {
+  --bg: #ffffff;
+  --text: #000000;
+  --card-bg: #ffffff;
+  --section-bg: rgba(249, 249, 249, 0.85);
+  --input-border: #ccc;
+}
+
+body.dark {
+  --bg: #121212;
+  --text: #f0f0f0;
+  --card-bg: #1e1e1e;
+  --section-bg: #1a1a1a;
+  --input-border: #444;
+}
+
+/* =======================
+   LOGO
+======================= */
+.logo {
+  font-size: 30px;
+  font-weight: 600;
+  color: darkorange;
+  display: flex;
+  align-items: center;
+  cursor: default;
+  margin-left: 40px;
+}
+
+.logo-letter {
+  display: inline-block;
+  animation: waveLoad 0.6s cubic-bezier(0.23, 1.2, 0.32, 1) both;
+}
+
+@keyframes waveLoad {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.1);
+  }
+
+  80% {
+    transform: translateY(3px) scale(0.97);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.logo-letter.hover-wave {
+  animation: waveBounce 0.5s cubic-bezier(0.23, 1.2, 0.32, 1) forwards;
+}
+
+@keyframes waveBounce {
+  0% {
+    transform: translateY(0) scale(1);
+    color: darkorange;
+  }
+
+  30% {
+    transform: translateY(-10px) scale(1.2);
+    color: #ff6600;
+  }
+
+  60% {
+    transform: translateY(4px) scale(0.95);
+    color: darkorange;
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+    color: darkorange;
+  }
+}
+
+/* =======================
+   NAVBAR
+======================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.menu-bar {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  list-style: none;
+  position: absolute;
+  left: 56%;
+  transform: translateX(-50%);
+}
+
+.menu-bar a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 18px;
+  transition: .5s;
+}
+
+.menu-bar a:hover {
+  color: darkorange;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  letter-spacing: 3px;
+}
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg);  /* ← must be solid, not transparent */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* =======================
+   THEME TOGGLE (desktop)
+======================= */
+.theme-toggle {
+  background: none;
+  border: 2px solid darkorange;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.theme-toggle:hover {
+  background: darkorange;
+}
+
+/* =======================
+   SETTINGS WRAPPER (mobile only)
+======================= */
+.settings-wrapper {
+  display: none;
+}
+
+.settings-btn,
+.dark-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: darkorange;
+  color: white;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
+  transition: .3s;
+}
+
+.settings-btn:hover {
+  background: black;
+  transform: rotate(90deg);
+}
+
+.dark-btn:hover {
+  background: black;
+}
+
+.settings-menu {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 999;
+}
+
+.settings-menu.open {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.settings-menu a {
+  background: white;
+  color: black;
+  padding: 10px 18px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: .3s;
+  white-space: nowrap;
+}
+
+.settings-menu a:hover {
+  background: darkorange;
+  color: white;
+}
+
+.settings-menu a i {
+  font-size: 13px;
+}
+
+/* =======================
+   HERO
+======================= */
+.sec1 {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  padding: 80px 5% 80px 10%;
+}
+
+.sec-1-1 {
+  flex: 0 0 320px;
+}
+
+.sec-1-1 img {
+  width: 320px;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.sec-1-2 {
+  flex: 1;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sec-1-2 h1 {
+  font-size: 40px;
+  color: darkorange;
+}
+
+.sec-1-2 h1:hover {
+  text-shadow: 3px 3px 10px rgba(255, 140, 0, 0.4);
+  transition: .3s;
+}
+
+.sec-1-2 span:hover,
+.sec-1-2 p:hover {
+  color: rgb(107, 80, 230);
+  cursor: default;
+  transition: .3s;
+}
+
+/* =======================
+   BUTTONS
+======================= */
+.btns {
+  display: flex;
+  gap: 20px;
+}
+
+.btns a {
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.btns a:first-child {
+  border: 2px solid black;
+  color: black;
+}
+
+.btns a:first-child:hover {
+  background: black;
+  color: white;
+}
+
+.btns a:last-child {
+  background: black;
+  color: white;
+}
+
+.btns a:last-child:hover {
+  background: darkorange;
+}
+
+/* =======================
+   SOCIAL
+======================= */
+.social {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social img {
+  width: 30px;
+  transition: .3s;
+}
+
+.social img:hover {
+  transform: scale(.9);
+}
+
+/* =======================
+   ABOUT
+======================= */
+.about {
+  padding: 80px 5%;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 32px;
+  color: darkorange;
+  margin-bottom: 20px;
+}
+
+.about h2:hover {
+  letter-spacing: 3px;
+  transition: .3s;
+}
+
+.about p {
+  max-width: 800px;
+  margin: auto;
+}
+
+.about p:hover {
+  color: rgb(107, 80, 230);
+  cursor: default;
+  transition: .3s;
+}
+
+/* =======================
+   EXPERIENCE
+======================= */
+.experience {
+  padding: 80px 5%;
+  background: var(--section-bg);
+}
+
+.experience h2 {
+  font-size: 32px;
+  color: darkorange;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.experience h2:hover {
+  letter-spacing: 3px;
+  transition: .3s;
+}
+
+.exp-card {
+  background: var(--card-bg);
+  color: var(--text);
+  padding: 50px;
+  border-radius: 15px;
+  max-width: 1100px;
+  margin: 40px auto;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .15);
+  border-left: 4px solid darkorange;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.exp-card:hover {
+  box-shadow: -6px 0 30px rgba(255, 140, 0, 0.5), 0 8px 30px rgba(0, 0, 0, .15);
+  transform: translateY(-4px);
+}
+
+.exp-card h3:hover,
+.exp-card p:hover,
+.exp-card li:hover {
+  color: rgb(107, 80, 230);
+  cursor: default;
+  transition: .3s;
+}
+
+.exp-card li:hover {
+  padding-left: 8px;
+}
+
+/* =======================
+   PROJECTS — SLIDER
+======================= */
+.project-container {
+  position: relative;
+  background: #332d25;
+  border-radius: 15px;
+  padding: 20px 20px 70px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .project-container {
+    height: auto;
+    /* ← let content define height */
+    padding-bottom: 70px;
+    /* ← enough space for buttons */
+  }
+
+  .scroll-btn {
+    position: absolute;
+    bottom: 15px;
+  }
+
+  .scroll-btn.left {
+    left: 15px;
+  }
+
+  .scroll-btn.right {
+    right: 15px;
+    left: unset;
+  }
+}
+
+/* The scrollable row */
+.project-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  /* padding so cards don't sit flush against edges */
+  padding: 10px 5px 15px;
+}
+
+.project-grid::-webkit-scrollbar {
+  display: none;
+}
+
+/* Each card: show ONE at a time with a peek of the next */
+.project-card {
+  flex: 0 0 calc(100% - 40px);
+  /* one card fills the container */
+  max-width: calc(100% - 40px);
+  scroll-snap-align: center;
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
+  transition: transform .3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.project-card h3 {
+  margin: 12px 0 8px;
+}
+
+.project-card h3:hover,
+.project-card p:hover {
+  color: rgb(107, 80, 230);
+  cursor: default;
+  transition: .3s;
+}
+
+.project-card a {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 18px;
+  background: black;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: .3s;
+}
+
+.project-card a:hover {
+  background: darkorange;
+}
+
+/* dark mode cards */
+body.dark .project-card {
+  background: #2a2a2a;
+  color: #f0f0f0;
+}
+
+body.dark .project-card h3 {
+  color: #f0f0f0;
+}
+
+body.dark .project-card p {
+  color: #cccccc;
+}
+
+body.dark .project-card a {
+  background: darkorange;
+  color: white;
+}
+
+body.dark .project-card a:hover {
+  background: white;
+  color: black;
+}
+
+/* Scroll arrow buttons */
+/* REPLACE your scroll-btn section with this ONLY — no media query needed */
+
+.scroll-btn {
+  position: absolute;
+  bottom: 15px;
+  background: darkorange;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.scroll-btn.left {
+  left: 15px;
+}
+
+.scroll-btn.right {
+  right: 15px;
+  left: unset;
+}
+
+.scroll-btn:hover {
+  background: white;
+  color: darkorange;
+}
+
+.project-container {
+  position: relative;
+  overflow: hidden;
+  /* keep this */
+  padding-bottom: 70px;
+  /* space for buttons inside */
+}
+
+@media (max-width: 768px) {
+
+  /* GLOBAL — works on all screen sizes */
+  .scroll-btn.left {
+    left: 10px;
+    bottom: 15px;
+  }
+
+  .scroll-btn.right {
+    right: 35px;
+    left: unset;
+    bottom: 15px;
+  }
+
+  /* Remove any calc() lines for scroll-btn — delete these if they exist */
+  /* .scroll-btn.left  { left: calc(...); }  ← DELETE */
+  /* .scroll-btn.right { left: calc(...); }  ← DELETE */
+}
+
+/* =======================
+   CONTACT
+======================= */
+#contact {
+  text-align: center;
+  padding: 80px 20px;
+  color: darkorange;
+}
+
+#contact h2:hover {
+  letter-spacing: 3px;
+  transition: .3s;
+}
+
+#contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+  margin: auto;
+}
+
+#contact input,
+#contact textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--input-border);
+  background: var(--card-bg);
+  color: var(--text);
+}
+
+#contact button {
+  background: black;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+#contact button:hover {
+  background: darkorange;
+}
+
+.contact-info {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.contact-info p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.contact-info p:hover {
+  color: black;
+  transform: translateX(5px);
+  cursor: default;
+  transition: .3s;
+}
+
+.contact-button {
+  margin-top: 10px;
+}
+
+.contact-button a {
+  display: inline-block;
+  padding: 10px 20px;
+  background: darkorange;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: .3s;
+}
+
+.contact-button a:hover {
+  background: black;
+}
+
+/* =======================
+   SCROLL ANIMATIONS
+======================= */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.slide-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.slide-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-up.visible,
+.slide-left.visible,
+.slide-right.visible {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* =======================
+   CLOSING SECTION
+======================= */
+.closing-section {
+  text-align: center;
+  padding: 20px 20px 40px;
+  max-width: 650px;
+  margin: 10px auto 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.thankyou-text {
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  color: darkorange;
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+  animation: popIn 0.6s ease forwards;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.closing-message {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.8;
+  opacity: 0;
+  font-weight: 400;
+  transform: translateY(15px);
+  animation: riseIn 0.8s ease 0.4s forwards;
+}
+
+.closing-message:hover {
+  color: rgb(107, 80, 230);
+  transition: .3s;
+}
+
+.closing-tag {
+  display: block;
+  margin-top: 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: darkorange;
+  letter-spacing: 1px;
+  opacity: 0;
+  animation: fadeSlide 0.6s ease 0.9s forwards;
+  word-break: keep-all;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes riseIn {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  100% {
+    opacity: 0.85;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlide {
+  0% {
+    opacity: 0;
+    letter-spacing: 6px;
+  }
+
+  100% {
+    opacity: 1;
+    letter-spacing: 1px;
+  }
+}
+
+.closing-section .split-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translate(var(--tx), var(--ty)) rotate(var(--tr)) scale(0.4);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.23, 1.2, 0.32, 1);
+}
+
+.closing-section .split-letter.landed {
+  opacity: 1;
+  transform: translate(0, 0) rotate(0deg) scale(1);
+}
+
+.closing-section .split-space {
+  display: inline-block;
+  width: 6px;
+}
+
+/* =======================
+   HOME BUTTON
+======================= */
+.home-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  z-index: 99999;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: darkorange;
+  color: white;
+  font-size: 22px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(255, 140, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s, visibility 0.4s, transform 0.3s, background 0.3s;
+  animation: floatHome 2.5s ease-in-out infinite;
+}
+
+.home-btn.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.home-btn:hover {
+  background: black;
+  transform: scale(1.15);
+  box-shadow: 0 6px 25px rgba(255, 140, 0, 0.6);
+}
+
+body.dark .home-btn:hover {
+  background: white;
+  color: darkorange;
+}
+
+@keyframes floatHome {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+
+/* =======================
+   MOBILE  ≤ 768px
+======================= */
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .menu-bar,
+  .theme-toggle {
+    display: none;
+  }
+
+  .settings-wrapper {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* HERO */
+  .sec1 {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+    padding: 40px 20px;
+  }
+
+  .sec-1-1 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .sec-1-1 img {
+    width: 200px;
+    height: 260px;
+  }
+
+  .sec-1-2 {
+    max-width: 100%;
+    width: 100%;
+    align-items: center;
+  }
+
+  .sec-1-2 h1 {
+    font-size: 26px;
+  }
+
+  .btns {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .btns a {
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 50px 20px;
+  }
+
+  .about p {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* EXPERIENCE */
+  .experience {
+    padding: 50px 20px;
+  }
+
+  .exp-card {
+    padding: 25px 20px;
+    margin: 20px 0;
+    width: 100%;
+  }
+
+  /* PROJECT SLIDER — stays horizontal on mobile */
+  .project-container {
+    padding: 15px 10px 65px;
+    border-radius: 12px;
+    margin: 15px 0 0;
+  }
+
+  .project-card {
+    flex: 0 0 85vw;
+    max-width: 85vw;
+  }
+
+  .scroll-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .scroll-btn.right {
+      right: 35px;
+      /* ← push left away from home button */
+      left: unset;
+      bottom: 15px;
+    }
+  }
+
+  /* CONTACT */
+  #contact {
+    padding: 50px 20px;
+  }
+
+  #contact form,
+  #contact input,
+  #contact textarea,
+  #contact button,
+  .contact-button,
+  .contact-button a {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .contact-button a {
+    display: block;
+    text-align: center;
+  }
+
+  .contact-info {
+    align-items: flex-start;
+  }
+
+  .contact-info p {
+    justify-content: flex-start;
+    font-size: 14px;
+  }
+
+  /* HOME BTN */
+  .home-btn {
+    bottom: 20px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+
+  .home-btn {
+    bottom: 80px;
+    /* ← lift home button up on mobile */
+    right: 15px;
+  }
+
+  @media (max-width: 768px) {
+    .home-btn {
+      bottom: 25px;
+      right: 15px;
+    }
+  }
+}
+html {
+  scroll-padding-top: 80px; /* ← match your navbar height */
+}
+@media (max-width: 768px) {
+  .about {
+    padding: 60px 20px;
+    min-height: 100vh;  /* ← full screen height */
+  }
+
+  .experience {
+    padding: 60px 20px;
+    min-height: 100vh;  /* ← full screen height */
+  }
+
+  #projects {
+    min-height: 100vh;  /* ← full screen height */
+  }
+
+  #contact {
+    min-height: 0vh;  /* ← full screen height */
+  }
+}

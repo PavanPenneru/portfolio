@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Portfolio | Portfolio</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <!-- SINGLE CSS FILE -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="images/portfolio.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+  <!-- DESKTOP NAVBAR -->
+  <nav class="navbar">
+    <!-- <div class="logo">Portfolio</div> -->
+    <div class="logo" id="logoText"></div>  
+
+    <ul class="menu-bar">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button class="theme-toggle" id="themeToggle">🌙</button>
+
+    <div class="settings-wrapper">
+      <button class="dark-btn" id="darkBtn">
+        <i class="fas fa-moon"></i>
+      </button>
+      <button class="settings-btn" id="settingsBtn">
+        <i class="fas fa-cog"></i>
+      </button>
+      <div class="settings-menu" id="settingsMenu">
+        <a href="#about"><i class="fas fa-user"></i> About</a>
+        <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
+        <a href="#projects"><i class="fas fa-code"></i> Projects</a>
+        <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="sec1">
+    <div class="sec-1-1">
+      <img id="profileImg" src="images/profile2.png" alt="Profile" />
+    </div>
+
+    <div class="sec-1-2">
+      <span>Hello, I'm</span>
+      <h1>Penneru Pavan Kumar</h1>
+      <span>Frontend Developer</span>
+
+      <p>
+        Results-driven Software Engineer with 1.6 years of experience building scalable and performance-focused web
+        applications.
+        Experienced in developing end-to-end features, improving application performance, and collaborating in agile
+        development environments.
+      </p>
+
+      <div class="btns">
+        <a href="images/resume.pdf" download>Download CV</a>
+        <a href="#contact">Contact Info</a>
+      </div>
+
+      <div class="social">
+        <a href="https://www.linkedin.com/in/pavan-kumar-penneru/" target="_blank">
+          <img src="images/linkedin.png" alt="LinkedIn">
+        </a>
+        <a href="https://github.com/PavanPenneru" target="_blank">
+          <img src="images/github.png" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <div>
+    <section id="about" class="about">
+      <h2>About Me</h2>
+      <p> Hey, I’m Pavan kumar penneru — a software engineer who enjoys building things that actually work and make
+        sense. I’m big
+        on learning by doing, experimenting with code, and figuring out why something works instead of just making
+        it work.<br>I spend most of my time working with JavaScript and React, improving my fundamentals, and building
+        small
+        projects to sharpen my skills. I like clean code, simple logic, and solutions that don’t overcomplicate
+        things.<br>I’m naturally curious, always exploring new concepts, and constantly trying to level up as a
+        developer.
+        My
+        goal is to grow into a strong engineer, contribute to real-world products, and keep getting better one
+        project at a time.</p>
+    </section>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="experience">
+    <h2>Experience</h2>
+
+    <div class="exp-card">
+      <h3>Frontend Developer - Anur Cloud Technologies Pvt. Ltd</h3>
+      <span class="duration">2024 - Present</span>
+
+      <div class="project-info">
+        <p><strong>Project:</strong> PIVC & Video KYC Web Applications for Insurance & Banking Clients</p>
+        <p><strong>Clients:</strong> AVIVA, SUD Life</p>
+        <p><strong>Role:</strong> Frontend Developer</p>
+        <p><strong>Technologies:</strong> HTML, CSS, JavaScript, Phaser 3, REST APIs, SMS/Email APIs</p>
+      </div>
+
+      <ul class="role-summary">
+        <li>Developed and maintained responsive, high-quality frontend applications aligned with design
+          specifications and coding best practices.</li>
+        <li>Collaborated closely with designers, backend engineers, and QA teams in Agile sprints to deliver
+          features on time.</li>
+        <li>Performed testing and debugging, contributing to team processes and continuous improvement.</li>
+        <li>Contributed to a Video KYC web application that enables insurance agents and clients to manage
+          policies seamlessly, including SMS and email services.</li>
+        <li>Implemented pre-policy verification features allowing insurers to confirm personal and policy
+          details, verify medical declarations, and make informed decisions.</li>
+        <li>Integrated face and smile detection, along with video capture capabilities, using JavaScript and
+          Phaser 3.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="experience">
+
+    <h2>Projects</h2>
+
+    <div>
+      <div class="project-container"> <!-- make container relative -->
+
+        <div class="project-grid">
+
+          <!-- <div class="project-card">
+            <img src="images/watch.jpg  " alt="E-commerce_watch_website" class="project-img">
+            <h3>E-commerce_watch_website</h3>
+            <p>A responsive job application system built with JavaScript to manage real-time actions.</p>
+            <a href="https://pavanpenneru.github.io/E-commerce_watch_website/">View Project</a>
+          </div> -->
+        
+          <div class="project-card">
+            <img src="images/portfolio2.png" alt="Portfolio Website" class="project-img">
+            <h3>Portfolio Website</h3>
+            <p>A responsive personal portfolio website designed with HTML, CSS, and JavaScript</p>
+            <a href="https://pavanpenneru.github.io/portfolio/">View Project</a>
+          </div>
+
+          <div class="project-card">
+            <img src="images/job tracker.jpg" alt="Job Tracker App" class="project-img">
+            <h3>Job Tracker</h3>
+            <p>A responsive job application system built with JavaScript to manage real-time actions.</p>
+            <a href="https://pavanpenneru.github.io/Job_Application_Tracker_app/">View Project</a>
+          </div>
+
+          <div class="project-card">
+            <img src="images/TOdo.jpg" alt="To-Do List App" class="project-img">
+            <h3>To-Do List</h3>
+            <p>A user-friendly to-do list app to manage daily tasks with add, edit, delete functionality.</p>
+            <a href=" https://pavanpenneru.github.io/ToDo-List-App/" target="_blank">View Project</a>
+          </div>
+
+          <div class="project-card">
+            <img src="images/calculator.jpg" alt="Calculator App" class="project-img">
+            <h3>Calculator App</h3>
+            <p>A Calculator that performs basic arithmetic operations with a clean and responsive design.</p>
+            <a href="https://pavanpenneru.github.io/Calculator_App/">View Project</a>
+          </div>
+
+        </div>
+
+        <!-- Scroll buttons in bottom corners -->
+        <button class="scroll-btn left">&#10094;</button> <!-- bottom-left -->
+        <button class="scroll-btn right">&#10095;</button> <!-- bottom-right -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+
+    <div class="exp-card">
+      <form id="contactForm">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+
+        <!-- Success message -->
+        <p id="successMsg" style="display:none; color:green; font-weight:600; margin-top:10px;">
+          ✅ Message sent successfully!
+        </p>
+      </form>
+
+      <div class="contact-info">
+        <p>📧 pavanpenneru@gmail.com</p>
+        <p>📞 +91 8978251424</p>
+        <p>📍 Hyderabad, India</p>
+        <div class="contact-button">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe_zmtNzKR4BR0pQzbU_MGL7_Fm4WC5tO8VhGOI9ntQovdNig/viewform?usp=publish-editor"
+            target="_blank">
+            Connect Fast
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+        <div class="closing-section fade-up">
+          <p class="thankyou-text">Thank you for visiting my portfolio!</p>
+          <span class="closing-tag">— Pavan Kumar</span>
+        </div>
+
+        <!-- HOME BTN HERE - outside everything -->
+        <a href="#" class="home-btn" title="Back to Top">
+          <i class="fas fa-home"></i>
+        </a>
+
+        <script src="bg.js"></script>
+</body>
+</html>
+
